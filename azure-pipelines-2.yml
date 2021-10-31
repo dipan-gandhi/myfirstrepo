@@ -30,4 +30,3 @@ jobs:
   - task: WhiteSource@21
     inputs:
       projectName: 'SimplCommerce.WebHost'
-  - task: SonarCloudAnalyze@1
