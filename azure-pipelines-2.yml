@@ -17,16 +17,9 @@ jobs:
       version: '2.2.401'
   - script: dotnet build ./SimplCommerce.sln
     displayName: 'dotnet build'
-  - task: PowerShell@2
+  - task: PublishBuildArtifacts@1
     inputs:
-      filePath: .\run-tests.ps1
-    displayName: 'run tests'
-  - task: PublishTestResults@2
-    displayName: 'Publish Test Results **/*.trx'
-    condition: succeededOrFailed()
-    inputs:
-      testResultsFormat: VSTest
-      testResultsFiles: '**/*.trx' 
-  - task: WhiteSource@21
-    inputs:
-      projectName: 'SimplCommerce.WebHost'
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
+
